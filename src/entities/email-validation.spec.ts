@@ -42,4 +42,10 @@ describe ('email validation', () => {
         const validation: boolean = Email.validate(email)
         expect(validation).toBeFalsy()
     })
+
+    test('should not accept empty domain', () => {
+        const email: string = 'any@'
+        const validation: boolean = Email.validate(email)
+        expect(validation).toBeFalsy()
+    })
 })
