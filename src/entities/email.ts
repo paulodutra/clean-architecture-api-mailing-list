@@ -3,6 +3,9 @@ export class Email {
        if (!email) {
         return false
        }
+       if (email.length > 320) {
+           return false
+       }
        const [localPart] = email.split('@')
        if (localPart.length > 64) {
         return false                                               
