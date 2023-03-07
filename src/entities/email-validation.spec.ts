@@ -31,6 +31,12 @@ describe ('email validation', () => {
         expect(validation).toBeFalsy()
     })
 
+    test('should not accept empty local part', () => {
+        const email: string = '@mail.com'
+        const validation: boolean = Email.validate(email)
+        expect(validation).toBeFalsy()
+    })
+
     test('should not accept local part larger than 64 chars', () => {
         const email: string = 'l'.repeat(65) + '@mail.com'
         const validation: boolean = Email.validate(email)
