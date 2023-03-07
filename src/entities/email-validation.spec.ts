@@ -48,4 +48,10 @@ describe ('email validation', () => {
         const validation: boolean = Email.validate(email)
         expect(validation).toBeFalsy()
     })
+
+    test('should not accept domain with a part larger than 64 chars', () => {
+        const email: string = 'any@' + 'd'.repeat(64) + '.com'
+        const validation: boolean = Email.validate(email)
+        expect(validation).toBeFalsy()
+    })
 })
