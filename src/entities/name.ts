@@ -4,8 +4,8 @@ export class Name {
 
     public readonly value: string
 
-    private constructor (value: string) {
-        this.value = value
+    private constructor (name: string) {
+        this.value = name
     }
     public static create(name: string): Either<InvalidNameError, Name> {
         if (!Name.validate(name)) {
