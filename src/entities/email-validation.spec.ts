@@ -1,6 +1,6 @@
 import { Email } from './email'
 
-describe ('email validation', () => {
+describe ('email validation - value object', () => {
     test('should not accept null strings', () => {
         const email = null
         const validation: boolean = Email.validate(email)
