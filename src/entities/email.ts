@@ -13,6 +13,12 @@ export class Email {
        if (domain.length === 0 || domain.length > 255) {
         return false 
        }
+       const domainParts = domain.split('.')
+       if (domainParts.some(function (part) {
+           return part.length > 63
+       })) {
+           return false
+       }
        return true
     }
 }
