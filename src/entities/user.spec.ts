@@ -1,5 +1,4 @@
 import { User } from './user'
-
 describe('user domain entity', () => {
 
     test('should not create user with valid name (too few characters)', () => {
