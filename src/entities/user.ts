@@ -16,13 +16,13 @@ export class User {
     static create (userData: UserData): Either<InvalidNameError | InvalidEmailError, User> {
         const nameOrError = Name.create(userData.name)
         if (nameOrError.isLeft()) {
-            return left(new InvalidNameError(userData.name))
+            return left(nameOrError.value)
         }
 
         const emailOrError = Email.create(userData.email)
 
         if(emailOrError.isLeft()) {
-           return left(new InvalidEmailError(userData.email)) 
+           return left(emailOrError.value) 
         }
         const name: Name = nameOrError.value as Name
         const email: Email = emailOrError.value as Email
