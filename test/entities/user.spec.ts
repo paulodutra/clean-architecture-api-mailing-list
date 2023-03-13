@@ -1,4 +1,4 @@
-import { User } from '../../src/entities'
+import { User } from '@/entities'
 describe('user domain entity', () => {
 
     test('should not create user with valid name (too few characters)', () => {
