@@ -3,6 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 module.exports = {
+  preset: '@shelf/jest-mongodb',
   roots: ['<rootDir>/test'],
   coverageDirectory: 'coverage',
   clearMocks: true,
