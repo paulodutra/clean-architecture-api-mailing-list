@@ -2,10 +2,7 @@ import { MongoHelper } from '@/external/repositories/mongodb/helper'
 import { MongodbUserRepository } from '@/external/repositories/mongodb'
 
 describe('Mongodb user repository', () => {
-    process.on('unhandledRejection', (error) => {
-        console.log('error', error)
-    })
-
+   
     beforeAll(async () => {
         await MongoHelper.connect(process.env.MONGO_URL)
     })
