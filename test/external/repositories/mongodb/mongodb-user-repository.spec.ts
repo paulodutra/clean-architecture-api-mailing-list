@@ -16,7 +16,6 @@ describe('Mongodb user repository', () => {
     })
 
     test('when user is added, it should exist', async () => {
-        console.log(process.env.MONGO_URL)
         const userRepository = new MongodbUserRepository()
         const user = {
             name: 'Any',
@@ -24,5 +23,20 @@ describe('Mongodb user repository', () => {
         }
         await userRepository.add(user)
         expect(await userRepository.exists(user)).toBeTruthy()
+    })
+
+    test('find all users should return all added users', async () => {
+        const userRepository = new MongodbUserRepository()
+        await userRepository.add({
+            name: 'Any name 1',
+            email: 'any1@email.com'
+        })
+        await userRepository.add({
+            name: 'Any name 2',
+            email: 'any2@email.com'
+        })
+        const users = await userRepository.findAllUsers()
+        expect(users[0].name).toEqual('Any name 1')
+        expect(users[1].name).toEqual('Any name 2')
     })
 })
