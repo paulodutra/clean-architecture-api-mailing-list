@@ -43,22 +43,22 @@ class MailServiceMock implements EmailService {
 }
 
 describe('Register and send email to user', () => {
-    test('should add user with complete data to mailing list', async () => {
+    test('should register user and send him/her an email with valid data', async () => {
         const users: UserData[] = []
         const repo: UserRepository = new InMemoryUserRepository(users)
         const registerUseCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
-        const name = 'user name'
-        const email = 'user@email.com'
         const mailServiceMock = new MailServiceMock()
-        const sendEmailUseCase = new SendEmail(mailOptions, mailServiceMock) 
-        const registerAndSendEmailUseCase: RegisterAndSendEmail = new RegisterAndSendEmail(registerUseCase, sendEmailUseCase)
-        const response = await registerAndSendEmailUseCase.perform({ name, email })
-        const user = repo.findUserByEmail(`${email}`)
-        expect((await user).name).toBe('user name')
-        expect(response.value.name).toBe(name)
+        const sendEmailUseCase: SendEmail = new SendEmail(mailOptions, mailServiceMock)
+        const registerAndSendEmailUseCase: RegisterAndSendEmail =
+          new RegisterAndSendEmail(registerUseCase, sendEmailUseCase)
+        const name = 'any_name'
+        const email = 'any@email.com'
+        const response: UserData = (await registerAndSendEmailUseCase.perform({ name, email })).value as UserData
+        const user = repo.findUserByEmail('any@email.com')
+        expect((await user).name).toBe('any_name')
+        expect(response.name).toBe('any_name')
         expect(mailServiceMock.timesSendWasCalled).toEqual(1)
-        expect(response.value.name).toEqual('user name')
-    })
+      })
 
     test('should not add user with invalid email to mailing list', async () => {
         const users: UserData[] = []

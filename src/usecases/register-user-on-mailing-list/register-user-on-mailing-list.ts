@@ -12,10 +12,10 @@ export class RegisterUserOnMailingList implements UseCase {
 
     public async perform (request: User): Promise<UserData> {
         const name = request.name.value
-        const email = request.name.value
-        const userData = {name, email}
+        const email = request.email.value
+        const userData = { name, email }
         if (!(await this.userRepo.exists(userData))) {
-           await this.userRepo.add(userData) 
+          await this.userRepo.add(userData)
         }
         return userData
     }
