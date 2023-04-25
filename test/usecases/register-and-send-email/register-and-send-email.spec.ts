@@ -60,7 +60,7 @@ describe('Register and send email to user', () => {
         expect(mailServiceMock.timesSendWasCalled).toEqual(1)
       })
 
-    test('should not add user with invalid email to mailing list', async () => {
+    test('should not register user and send him/her an email with invalid email', async () => {
         const users: UserData[] = []
         const repo: UserRepository = new InMemoryUserRepository(users)
         const registerUseCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
@@ -73,7 +73,7 @@ describe('Register and send email to user', () => {
         expect(response.name).toEqual('InvalidEmailError')
     })
 
-    test('should not add user with invalid name to mailing list', async () => {
+    test('should notregister user and send him/her an email with invalid name', async () => {
         const users: UserData[] = []
         const repo: UserRepository = new InMemoryUserRepository(users)
         const registerUseCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
