@@ -1,8 +1,9 @@
 import { EmailOptions } from '@/usecases/send-email/ports'
+import { readdirSync } from 'fs'
 
 const attachments = [{
-    filename: 'text.txt',
-    path: '../../resources/text.txt'
+    filename: 'logo-site.png',
+    path: 'http://paulodutrainfo.com.br/assets/img/site/logo-site.png'
 }]
 
 export function getEmailOptions() : EmailOptions {
