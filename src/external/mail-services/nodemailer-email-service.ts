@@ -24,6 +24,7 @@ export class NodemailerEmailService implements EmailService {
             })
             return right(options)
         } catch (error) {
+            console.error('Error when try to send email', error)
             return left(new MailServiceError())
         }
     }
